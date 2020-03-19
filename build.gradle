@@ -1,15 +1,23 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id "com.github.jk1.dependency-license-report" version "1.13"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group 'com.github.jhuynh1'
+version '1.0'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+shadowJar {
+    dependencies {
+        include 'com/github/jhuynh1/*/**'
+        include 'io.micrometer:micrometer-registry-wavefront:latest.release'
+    }
 }
 
 dependencies {

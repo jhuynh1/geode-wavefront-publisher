@@ -11,14 +11,11 @@ import org.slf4j.LoggerFactory;
 
 public class GeodeWavefrontPublisher implements MetricsPublishingService {
     final static Logger logger = LoggerFactory.getLogger(GeodeWavefrontPublisher.class);
-
     private volatile MeterRegistry registry;
-    private volatile MetricsSession session;
 
     @Override
     public void start(MetricsSession session) {
         logger.info("Starting geode-wavefront-publisher");
-        this.session = session;
         registry = createWavefrontRegistry();
 
         // add the Wavefront registry as a sub-registry to the cache's composite registry
