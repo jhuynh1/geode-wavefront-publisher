@@ -1,4 +1,6 @@
 ## geode-wavefront-publisher
+This is an impementation of a Apache Geode MetricPublishingService that allows Apache Geode metrics to be published to Wavefront.
+
 Pick either to download a prebuilt jar or build from source
 
 ### 1a. Download a prebuilt jar
