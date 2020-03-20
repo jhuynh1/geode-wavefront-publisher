@@ -1,7 +1,9 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
-    id "com.github.jk1.dependency-license-report" version "1.13"
+//    id "com.github.jk1.dependency-license-report" version "1.13"
+//    id 'maven-publish'
+//    id "com.jfrog.bintray" version "1.8.4"
 }
 
 group 'com.github.jhuynh1'
@@ -11,18 +13,79 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+configurations {
+    uberImplementation
 }
 
 shadowJar {
-    dependencies {
-        include 'com/github/jhuynh1/*/**'
-        include 'io.micrometer:micrometer-registry-wavefront:latest.release'
-    }
+    project.configurations.uberImplementation.canBeResolved = true
+    configurations = [project.configurations.uberImplementation]
 }
 
 dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.13.1', ext: 'pom'
     implementation 'io.micrometer:micrometer-registry-wavefront:latest.release'
     implementation group: 'org.apache.geode', name: 'geode-core', version: '1.11.0'
+    uberImplementation 'io.micrometer:micrometer-registry-wavefront:latest.release'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+
+def pomConfig = {
+    licenses {
+        license {
+            name "MIT"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "jhuynh1"
+            name "Jason Huynh"
+        }
+    }
+
+    scm {
+        url "https://github.com/jhuynh1/geode-wavefront-publisher"
+    }
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifact shadowJar {
+            }
+            groupId = 'com.github.jhuynh1.geode.wavefront'
+            artifactId = 'geode-wavefront-publisher'
+            version = '1.0'
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('name', 'geode-wavefront-publisher')
+                root.appendNode('url', 'https://github.com/jhuynh1/geode-wavefront-publisher')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    user = System.getProperty('bintray.user')
+    key = System.getProperty('bintray.key')
+    publications = ['mavenPublication']
+
+    pkg {
+        repo = 'jhuynh1-maven'
+        name = 'GeodeWavefrontPublisher'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/jhuynh1/geode-wavefront-publisher.git'
+        version {
+            name = '1.0'
+            released  = new Date()
+        }
+    }
+}
+
