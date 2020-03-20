@@ -3,10 +3,7 @@ This is an impementation of a Apache Geode MetricPublishingService that allows A
 
 
 ### Obtain a geode-wavefront-publisher.jar
-Pick either to download a prebuilt jar or build from source
-
-#### Download
-[geode-wavefront-publisher.jar](https://bintray.com/jasonhuynh/jhuynh1-maven/download_file?file_path=com%2Fgithub%2Fjhuynh1%2Fgeode%2Fwavefront%2Fgeode-wavefront-publisher%2F1.0%2Fgeode-wavefront-publisher-1.0-all.jar)
+Pick either to download a prebuilt [geode-wavefront-publisher.jar](https://bintray.com/jasonhuynh/jhuynh1-maven/download_file?file_path=com%2Fgithub%2Fjhuynh1%2Fgeode%2Fwavefront%2Fgeode-wavefront-publisher%2F1.0%2Fgeode-wavefront-publisher-1.0-all.jar) jar or build from source
 
 #### Build from Source
 `git clone https://github.com/jhuynh1/geode-wavefront-publisher.git`
