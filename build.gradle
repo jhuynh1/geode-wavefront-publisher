@@ -23,13 +23,12 @@ configurations {
 shadowJar {
     project.configurations.uberImplementation.canBeResolved = true
     configurations = [project.configurations.uberImplementation]
-    archiveFileName = "${rootProject.name}-${rootProject.version}.jar"
 }
 
 dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.13.1', ext: 'pom'
-    implementation 'io.micrometer:micrometer-registry-wavefront:latest.release'
     implementation group: 'org.apache.geode', name: 'geode-core', version: '1.11.0'
+    implementation 'io.micrometer:micrometer-registry-wavefront:latest.release'
     uberImplementation 'io.micrometer:micrometer-registry-wavefront:latest.release'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
@@ -57,9 +56,7 @@ def pomConfig = {
 publishing {
     publications {
         mavenPublication(MavenPublication) {
-            from components.java
-            artifact shadowJar {
-            }
+            publication -> project.shadow.component(publication)
             groupId = 'com.github.jhuynh1.geode.wavefront'
             artifactId = 'geode-wavefront-publisher'
             version = '1.0'
