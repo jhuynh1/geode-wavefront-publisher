@@ -13,7 +13,8 @@ Pick either to download a prebuilt jar or build from source
 
 `./gradlew shadowJar`
 
-### Obtain Wavefront API token
+### Obtain a Wavefront API token
+Generate an API token from the Wavefront UI
 
 ### Deploy
 Here is an example command to start a locator and server
