@@ -1,17 +1,18 @@
 ## geode-wavefront-publisher
 This is an impementation of a Apache Geode MetricPublishingService that allows Apache Geode metrics to be published to Wavefront.
 
+
+### Obtain a geode-wavefront-publisher.jar
 Pick either to download a prebuilt jar or build from source
 
-### 1a. Download a prebuilt jar
+#### Download
 [geode-wavefront-publisher.jar](https://bintray.com/jasonhuynh/jhuynh1-maven/download_file?file_path=com%2Fgithub%2Fjhuynh1%2Fgeode%2Fwavefront%2Fgeode-wavefront-publisher%2F1.0%2Fgeode-wavefront-publisher-1.0-all.jar)
 
-### 1b. Build
-#### Clone the repo
-git clone https://github.com/jhuynh1/geode-wavefront-publisher.git
+#### Build
+#### Clone the repo and build the jar
+`git clone https://github.com/jhuynh1/geode-wavefront-publisher.git`
 
-#### Build the jar
-./gradlew shadowJar
+`./gradlew shadowJar`
 
 ### 2. Obtain Wavefront API token
 
